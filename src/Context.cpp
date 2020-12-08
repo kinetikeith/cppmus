@@ -5,6 +5,13 @@ Context::Context(BufferInfo gBufferInfo) : globalBufferInfo(gBufferInfo)
 
 }
 
+BufferInfo Context::getGlobalBufferInfo()
+{
+
+	return globalBufferInfo;
+
+}
+
 void Context::addModule(ModulePtr mod)
 {
 

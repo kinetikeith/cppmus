@@ -10,14 +10,15 @@
 struct PlayInfo
 {
 
-	PlaybackContextPtr	playbackContext;
+	PlaybackContextPtr		playbackContext;
 	FrameInfo			frameInfo;
 	BufferInfo			bufferInfo;
+	AudioOutputPtr			output;
 
 };
 
 int audioCallback(const void*, void*, unsigned long, PaStreamCallbackTimeInfo, PaStreamCallbackFlags, void*);
 
-PaError play(PlaybackContextPtr, size_t);
+PaError play(PlaybackContextPtr);
 
 #endif /* PLAY_HPP */

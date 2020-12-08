@@ -19,6 +19,8 @@ public:
 
 				Context(BufferInfo);
 
+	BufferInfo		getGlobalBufferInfo();
+
 	virtual void		addModule(ModulePtr);
 	virtual void		removeModule(ModulePtr);
 	virtual ModuleList	getModules();

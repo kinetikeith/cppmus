@@ -23,6 +23,9 @@ public:
 	void			setValue(size_t, size_t, size_t, T);
 	void			setValueFast(size_t, T);
 
+	T			getValue(size_t, size_t, size_t);
+	T			getValueFast(size_t);
+
 	const BufferInfo&	getBufferInfo();
 
 private:
@@ -85,6 +88,22 @@ inline void BufferOutput<T>::setValueFast(size_t index, T value)
 {
 
 	buffer->setValueFast(index, value);
+
+}
+
+template<typename T>
+inline T BufferOutput<T>::getValue(size_t sampleIndex, size_t voiceIndex, size_t channelIndex)
+{
+
+	return buffer->getValue(sampleIndex, voiceIndex, channelIndex);
+
+}
+
+template<typename T>
+inline T BufferOutput<T>::getValueFast(size_t index)
+{
+
+	return buffer->getValueFast(index);
 
 }
 

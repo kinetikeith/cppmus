@@ -14,6 +14,7 @@ OBJ=\
     Module.o \
     Context.o \
     PlaybackContext.o \
+    play.o \
 
 LIBS_GLOB=portaudio/lib/.libs/libportaudio.a
 DEPS_GLOB=portaudio/include/portaudio.h
