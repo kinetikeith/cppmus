@@ -27,13 +27,13 @@ _OBJ=$(patsubst %,$(ODIR)/%,$(OBJ))
 _RES=$(BDIR)/$(RES)
 
 portaudio/lib/.libs/libportaudio.a:
-	@cd portaudio && ./configure && make
+	@cd portaudio && ./configure && make libs/.libs/libportaudio.a
 
 $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS) $(DEPS_GLOB)
 	@$(CC) -c -o $@ $< $(CFLAGS)
 	@echo compiled '$@'
 
-$(_RES): $(_OBJ)
+$(_RES): $(_OBJ) $(LIBS_GLOB)
 	@$(CC) -o $@ $^ $(CFLAGS) $(LIBS) $(LIBS_GLOB)
 	@echo linked '$@'
 
