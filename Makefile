@@ -27,7 +27,7 @@ _OBJ=$(patsubst %,$(ODIR)/%,$(OBJ))
 _RES=$(BDIR)/$(RES)
 
 portaudio/lib/.libs/libportaudio.a:
-	@cd portaudio && ./configure && make libs/.libs/libportaudio.a
+	@cd portaudio && ./configure && make lib/libportaudio.la
 
 $(ODIR)/%.o: $(SDIR)/%.cpp $(DEPS) $(DEPS_GLOB)
 	@$(CC) -c -o $@ $< $(CFLAGS)
