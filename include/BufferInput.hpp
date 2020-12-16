@@ -22,8 +22,8 @@ public:
 
 	void				connect(BufferOutputPtr<T>);
 
-	void				prepareBufferInput(const BufferInfo&);
-	void				finishBufferInput();
+	void				prepareInput(const BufferInfo&);
+	void				finishInput();
 
 	T*				getPtr(size_t, size_t, size_t);
 	T*				getPtrFast(size_t);
@@ -79,7 +79,7 @@ void BufferInput<T>::connect(BufferOutputPtr<T> output)
 }
 
 template<typename T>
-void BufferInput<T>::prepareBufferInput(const BufferInfo& info)
+void BufferInput<T>::prepareInput(const BufferInfo& info)
 {
 
 	buffer->prepareBuffer(info);
@@ -87,7 +87,7 @@ void BufferInput<T>::prepareBufferInput(const BufferInfo& info)
 }
 
 template<typename T>
-void BufferInput<T>::finishBufferInput()
+void BufferInput<T>::finishInput()
 {
 
 	buffer->finishBuffer();

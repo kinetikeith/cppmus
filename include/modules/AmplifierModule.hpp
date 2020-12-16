@@ -1,24 +1,34 @@
 #ifndef AMPLIFIERMODULE_HPP
 #define AMPLIFIERMODULE_HPP
 
-#include "types.hpp"
 #include "Module.hpp"
-#include "SingleAudioInput.hpp"
-#include "SingleAudioOutput.hpp"
+#include "FrameInfo.hpp"
+#include "BufferInfo.hpp"
+#include "AudioInput.hpp"
+#include "AudioOutput.hpp"
 
-class AmplifierModule : public Module, public SingleAudioInput, public SingleAudioOutput
+class AmplifierModule : public Module
 {
 public:
 
-		AmplifierModule(audio_t*, control_t*);
+		AmplifierModule();
 
-	void	prepareForPlay();
-	void	processFrame();
-	void	finishAfterPlay();
+	void	prepareModule(const FrameInfo&, const BufferInfo&);
+	void	processModule(const FrameInfo&, const BufferInfo&);
+	void	finishModule();
+
+	AudioInput	getAudioInput();
+	AudioInput	getControlInput();
+	AudioOutput	getAudioOutput();
+
+	void		setAudioInput(AudioInput);
+	void		setControlInput(AudioInput);
 
 private:
 
-	control_t*	ampAmountBuffer;
+	AudioInput	audioInput;
+	AudioInput	controlInput;
+	AudioOutput	audioOutput;
 
 };
 
