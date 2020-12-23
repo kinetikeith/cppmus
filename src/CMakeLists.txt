@@ -1,7 +1,5 @@
-set(TARGET test)
-
 add_library(
-	cppmus-core
+	cppmus-core STATIC
 	Module.cpp
 	)
 

@@ -176,6 +176,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named cppmus-test
+
+# Build rule for target.
+cppmus-test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cppmus-test
+.PHONY : cppmus-test
+
+# fast build rule for target.
+cppmus-test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cppmus-test.dir/build.make CMakeFiles/cppmus-test.dir/build
+.PHONY : cppmus-test/fast
+
+#=============================================================================
 # Target rules for targets named uninstall
 
 # Build rule for target.
@@ -670,17 +683,44 @@ teststops/fast:
 .PHONY : teststops/fast
 
 #=============================================================================
-# Target rules for targets named test
+# Target rules for targets named cppmus-core
 
 # Build rule for target.
-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test
-.PHONY : test
+cppmus-core: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cppmus-core
+.PHONY : cppmus-core
 
 # fast build rule for target.
-test/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/test.dir/build.make src/CMakeFiles/test.dir/build
-.PHONY : test/fast
+cppmus-core/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/cppmus-core.dir/build.make src/CMakeFiles/cppmus-core.dir/build
+.PHONY : cppmus-core/fast
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cppmus-test.dir/build.make CMakeFiles/cppmus-test.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cppmus-test.dir/build.make CMakeFiles/cppmus-test.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cppmus-test.dir/build.make CMakeFiles/cppmus-test.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -725,14 +765,18 @@ help:
 	@echo "... uninstall"
 	@echo "... apinames"
 	@echo "... audioprobe"
+	@echo "... cppmus-core"
+	@echo "... cppmus-test"
 	@echo "... duplex"
 	@echo "... playraw"
 	@echo "... playsaw"
 	@echo "... record"
 	@echo "... rtaudio"
-	@echo "... test"
 	@echo "... testall"
 	@echo "... teststops"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 
