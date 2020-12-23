@@ -11,5 +11,9 @@ set(TARGET cppmus-test)
 
 add_executable(${TARGET} src/main.cpp)
 
-target_link_libraries(${TARGET} cppmus-core rtaudio)
+target_link_libraries(
+    ${TARGET}
+    cppmus-core
+    cppmus-play
+    rtaudio)
 
