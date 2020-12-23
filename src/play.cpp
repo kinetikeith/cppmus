@@ -9,23 +9,17 @@ int audioCallback(const void *inputBuffer, void *outputBuffer, unsigned long fra
 	PlayInfo* info = static_cast<PlayInfo*>(userData);
 	float *out = static_cast<float*>(outputBuffer);
 
-	size_t cOffset = info->bufferInfo.getChannelIndexOffset();
-	size_t sOffset = info->bufferInfo.getSampleIndexOffset();
-	size_t vOffset = info->bufferInfo.getVoiceIndexOffset();
-
-	size_t cLimit = info->bufferInfo.getChannelIndexLimit();
-	size_t sLimit = info->bufferInfo.getSampleIndexLimit();
-	size_t vLimit = info->bufferInfo.getVoiceIndexLimit();
+	const BufferInfo& bInfo = info->bufferInfo;
 
 	info->playbackContext->processContext(info->frameInfo);
 
-	for(size_t v = 0; v < vLimit; v += vOffset)
+	for(size_t v = 0; v < bInfo.voiceIndexLimit; v += bInfo.voiceIndexOffset)
 	{
 
-		for(size_t s = 0; s < sLimit; s += sOffset)
+		for(size_t s = 0; s < bInfo.sampleIndexLimit; s += bInfo.sampleIndexOffset)
 		{
 
-			for(size_t c = 0; c < cLimit; c += cOffset)
+			for(size_t c = 0; c < bInfo.channelIndexLimit; c += bInfo.channelIndexOffset)
 			{
 
 				out[c+s] += info->output->getValueFast(c+s+v);
@@ -36,7 +30,7 @@ int audioCallback(const void *inputBuffer, void *outputBuffer, unsigned long fra
 
 	}
 
-	info->frameInfo.index += info->bufferInfo.numSamples;
+	info->frameInfo.index += bInfo.numSamples;
 	info->frameInfo.time = info->frameInfo.index / info->frameInfo.sampleRate;
 
 	if(info->playbackContext->isConcluded())

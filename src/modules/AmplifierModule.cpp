@@ -1,7 +1,7 @@
 #include "AmplifierModule.hpp"
 
-AmplifierModule::AmplifierModule(audio_t* input, control_t* ampAmount) :
-	audioInput(), AudioOutput(0.0), ampAmountBuffer(ampAmount)
+AmplifierModule::AmplifierModule(AudioInput aInput = 0.0, AudioInput cInput = 0.0) :
+	audioInput(aInput), controlInput(cInput), AudioOutput(0.0), ampAmountBuffer(ampAmount)
 {
 
 }
@@ -13,8 +13,15 @@ void AmplifierModule::prepareModule(const FrameInfo& fInfo, const BufferInfo& bI
 
 }
 
-void AmplifierModule::processModule()
+void AmplifierModule::processModule(const FrameInfo& fInfo, const BufferInfo& bInfo)
 {
+
+	size_t cLim = bInfo.getChannelIndexLimit();
+	size_t sLim = bInfo.getSampleIndexLimit();
+	size_t vLim = bInfo.getVoiceIndexLimit();
+
+	size_t 
+	for(size_t cIndex = 0; cIndex < 
 	
 }
 

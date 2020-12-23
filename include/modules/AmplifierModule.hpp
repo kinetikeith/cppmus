@@ -21,6 +21,9 @@ public:
 	AudioInput	getControlInput();
 	AudioOutput	getAudioOutput();
 
+	InputList	getInputs();
+	OutputList	getOutputs();
+
 	void		setAudioInput(AudioInput);
 	void		setControlInput(AudioInput);
 

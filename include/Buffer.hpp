@@ -58,8 +58,8 @@ void Buffer<T>::prepareBuffer(const BufferInfo& i)
 	{
 
 		info = &i;
-		ptr = new T[i.getBufferSize()];
-		std::fill_n(ptr, i.getBufferSize(), defaultValue);
+		ptr = new T[i.bufferSize];
+		std::fill_n(ptr, i.bufferSize, defaultValue);
 
 	}
 
@@ -82,10 +82,10 @@ inline T Buffer<T>::getDefaultValue()
 }
 
 template<typename T>
-inline T* Buffer<T>::getPtr(size_t sampleIndex, size_t voiceIndex, size_t channelIndex)
+inline T* Buffer<T>::getPtr(size_t sampIndex, size_t voicIndex, size_t chanIndex)
 {
 
-	return ptr + info->getIndex(sampleIndex, voiceIndex, channelIndex);
+	return ptr + info->getIndex(sampIndex, voicIndex, chanIndex);
 
 }
 
@@ -98,10 +98,10 @@ inline T* Buffer<T>::getPtrFast(size_t index)
 }
 
 template<typename T>
-inline T Buffer<T>::getValue(size_t channelIndex, size_t sampleIndex, size_t voiceIndex)
+inline T Buffer<T>::getValue(size_t chanIndex, size_t sampIndex, size_t voicIndex)
 {
 
-	return *(ptr + info->getIndex(channelIndex, sampleIndex, voiceIndex));
+	return *(ptr + info->getIndex(chanIndex, sampIndex, voicIndex));
 
 }
 
@@ -114,10 +114,10 @@ inline T Buffer<T>::getValueFast(size_t index)
 }
 
 template<typename T>
-inline void Buffer<T>::setValue(size_t channelIndex, size_t sampleIndex, size_t voiceIndex, T value)
+inline void Buffer<T>::setValue(size_t chanIndex, size_t sampIndex, size_t voicIndex, T value)
 {
 
-	*(ptr + info->getIndex(channelIndex, sampleIndex, voiceIndex)) = value;
+	*(ptr + info->getIndex(chanIndex, sampIndex, voicIndex)) = value;
 
 }
 

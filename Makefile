@@ -11,6 +11,7 @@ DEPS=
 OBJ=\
     AudioInput.o \
     AudioOutput.o \
+    BufferInfo.o \
     Module.o \
     Context.o \
     PlaybackContext.o \
