@@ -4,8 +4,6 @@ project(cppmus VERSION 0.0.1)
 
 option(BUILD_TEST "Build the test program" OFF)
 
-if(BUILD_TEST)
-
 include_directories(include rtaudio)
 add_subdirectory(src)
 
