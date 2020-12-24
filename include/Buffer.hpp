@@ -18,15 +18,9 @@ public:
 	void			finishBuffer();
 
 	T			getDefaultValue();
+	void		setDefaultValue(T);
 
-	T*			getPtr(size_t, size_t, size_t);
-	T*			getPtrFast(size_t);
-
-	T			getValue(size_t, size_t, size_t);
-	T			getValueFast(size_t);
-
-	void			setValue(size_t, size_t, size_t, T);
-	void			setValueFast(size_t, T);
+	T*			getPtr();
 
 	const BufferInfo&	getInfo();
 
@@ -34,7 +28,7 @@ private:
 
 	T			defaultValue;
 	T*			ptr;
-	const BufferInfoPtr	info;
+	BufferInfoPtr	info;
 
 };
 
@@ -45,7 +39,8 @@ template<typename T>
 using BufferList = std::vector<BufferPtr<T>>;
 
 template<typename T>
-Buffer<T>::Buffer(T defValue) : defaultValue(defValue)
+Buffer<T>::Buffer(T defValue) : defaultValue(defValue), 
+	info(nullptr)
 {
 
 }
@@ -57,7 +52,7 @@ void Buffer<T>::prepareBuffer(const BufferInfo& i)
 	if(info == nullptr)
 	{
 
-		info = &i;
+		info = &(const_cast<BufferInfoPtr>(i));
 		ptr = new T[i.bufferSize];
 		std::fill_n(ptr, i.bufferSize, defaultValue);
 
@@ -82,50 +77,18 @@ inline T Buffer<T>::getDefaultValue()
 }
 
 template<typename T>
-inline T* Buffer<T>::getPtr(size_t sampIndex, size_t voicIndex, size_t chanIndex)
+inline void Buffer<T>::setDefaultValue(T val)
 {
 
-	return ptr + info->getIndex(sampIndex, voicIndex, chanIndex);
+	defaultValue = val;
 
 }
 
 template<typename T>
-inline T* Buffer<T>::getPtrFast(size_t index)
+inline T* Buffer<T>::getPtr()
 {
 
-	return ptr + index;
-
-}
-
-template<typename T>
-inline T Buffer<T>::getValue(size_t chanIndex, size_t sampIndex, size_t voicIndex)
-{
-
-	return *(ptr + info->getIndex(chanIndex, sampIndex, voicIndex));
-
-}
-
-template<typename T>
-inline T Buffer<T>::getValueFast(size_t index)
-{
-
-	return *(ptr + index);
-
-}
-
-template<typename T>
-inline void Buffer<T>::setValue(size_t chanIndex, size_t sampIndex, size_t voicIndex, T value)
-{
-
-	*(ptr + info->getIndex(chanIndex, sampIndex, voicIndex)) = value;
-
-}
-
-template<typename T>
-inline void Buffer<T>::setValueFast(size_t index, T value)
-{
-
-	*(ptr + index) = value;
+	return ptr;
 
 }
 
