@@ -22,4 +22,5 @@ if(BUILD_TEST)
         cppmus-play
         rtaudio
         )
-
+    
+endif()
