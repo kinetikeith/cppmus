@@ -1,6 +1,7 @@
 #ifndef BUFFERITERATOR_HPP
 #define BUFFERITERATOR_HPP
 
+#include <cstddef>
 #include <iterator>
 
 #include "Buffer.hpp"
