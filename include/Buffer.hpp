@@ -52,7 +52,7 @@ void Buffer<T>::prepareBuffer(const BufferInfo& i)
 	if(info == nullptr)
 	{
 
-		info = i;
+		info = &i;
 		ptr = new T[i.bufferSize];
 		std::fill_n(ptr, i.bufferSize, defaultValue);
 
