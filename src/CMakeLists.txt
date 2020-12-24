@@ -10,5 +10,5 @@ add_library(
 add_library(
     cppmus-play STATIC
     play.cpp
-    PlayableContext.cpp
+    PlaybackContext.cpp
 )
