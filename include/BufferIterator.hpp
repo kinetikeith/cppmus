@@ -1,0 +1,44 @@
+#ifndef BUFFERITERATOR_HPP
+#define BUFFERITERATOR_HPP
+
+#include <iterator>
+
+#include "Buffer.hpp"
+#include "BufferInfo.hpp"
+#include "FrameInfo.hpp"
+
+template<typename T>
+class BufferIterator : public std::iterator<std::random_access_iterator_tag, T, size_t>
+{
+public:
+
+					BufferIterator(BufferInfo&, FrameInfo&);
+					BufferIterator(const BufferIterator&);
+
+	T& operator*() const;
+	T& operator[](const size_t&) const;
+	
+	const BufferIterator& operator++();
+	const BufferIterator& operator--();
+	BufferIterator& operator++(int);
+	BufferIterator& operator--(int);
+	BufferIterator& operator+=(const size_t&);
+	BufferIterator& operator-=(const size_t&);
+
+	BufferIterator& operator+(const size_t&) const;
+	BufferIterator& operator-(const size_t&) const;
+	BufferIterator&	operator=(const BufferIterator&);
+	
+	bool operator==(const BufferIterator&) const;
+	bool operator!=(const BufferIterator&) const;
+	bool operator<(const BufferIterator&) const;
+	bool operator>(const BufferIterator&) const;
+	bool operator<=(const BufferIterator&) const;
+	bool operator>=(const BufferIterator&) const;
+	
+	
+	friend void		std::swap(BufferIterator& lhs, BufferIterator& rhs);
+	
+}
+
+#endif /* BUFFERITERATOR_HPP */
