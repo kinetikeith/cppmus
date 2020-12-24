@@ -36,8 +36,12 @@ public:
 	bool operator<=(const BufferIterator&) const;
 	bool operator>=(const BufferIterator&) const;
 	
+	size_t getChannelIndex() const;
+	size_t getSampleIndex() const;
+	size_t getVoiceIndex() const;
 	
-	friend void		std::swap(BufferIterator& lhs, BufferIterator& rhs);
+	size_t getAbsoluteSampleIndex() const;
+	double getAbsoluteTime() const;
 	
 }
 
