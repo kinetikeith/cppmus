@@ -26,13 +26,13 @@ endif()
 
 if(BUILD_TEST)
     
-    add_executable(${TARGET} src/test.cpp)
+    add_executable(${TARGET} test.cpp)
 
     target_link_libraries(
         ${TARGET}
         cppmus-core
         cppmus-play
         rtaudio
-        )
+    )
     
 endif()
