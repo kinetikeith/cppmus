@@ -5,7 +5,6 @@ project(cppmus VERSION 0.0.1)
 option(BUILD_TEST "Build the test program" OFF)
 
 if(BUILD_TEST)
-    add_subdirectory(rtaudio)
 
 include_directories(include rtaudio)
 add_subdirectory(src)
@@ -16,6 +15,8 @@ if(BUILD_TEST)
     
     add_executable(${TARGET} src/test.cpp)
 
+    add_subdirectory(rtaudio)
+    
     target_link_libraries(
         ${TARGET}
         cppmus-core
