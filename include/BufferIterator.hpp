@@ -43,6 +43,10 @@ public:
 	size_t getAbsoluteSampleIndex() const;
 	double getAbsoluteTime() const;
 	
+private:
+
+	size_t _currentIndex;
+
 }
 
 #endif /* BUFFERITERATOR_HPP */
