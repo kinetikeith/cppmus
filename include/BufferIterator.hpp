@@ -47,6 +47,6 @@ private:
 
 	size_t _currentIndex;
 
-}
+};
 
 #endif /* BUFFERITERATOR_HPP */
