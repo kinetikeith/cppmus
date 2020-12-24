@@ -2,24 +2,15 @@ cmake_minimum_required(VERSION 3.19)
 
 project(cppmus VERSION 0.0.1)
 
+option(BUILD_CORE "Build core library" ON)
+option(BUILD_PLAY "Build play library" OFF)
 option(BUILD_TEST "Build the test program" OFF)
 
-include_directories(include rtaudio)
-add_subdirectory(src)
-
-set(TARGET cppmus-test)
-
-if(BUILD_TEST)
-    
-    add_executable(${TARGET} src/test.cpp)
+if(BUILD_PLAY)
 
     add_subdirectory(rtaudio)
     
-    target_link_libraries(
-        ${TARGET}
-        cppmus-core
-        cppmus-play
-        rtaudio
-        )
-    
 endif()
+    
+include_directories(include rtaudio)
+add_subdirectory(src)
