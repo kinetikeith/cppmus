@@ -22,13 +22,10 @@ public:
 
 	T*			getPtr();
 
-	const BufferInfo&	getInfo();
-
 private:
 
 	T			defaultValue;
 	T*			ptr;
-	BufferInfoPtr	info;
 
 };
 
@@ -52,7 +49,6 @@ void Buffer<T>::prepareBuffer(const BufferInfo& i)
 	if(info == nullptr)
 	{
 
-		info = const_cast<BufferInfo*>(&i);
 		ptr = new T[i.bufferSize];
 		std::fill_n(ptr, i.bufferSize, defaultValue);
 
@@ -89,14 +85,6 @@ inline T* Buffer<T>::getPtr()
 {
 
 	return ptr;
-
-}
-
-template<typename T>
-inline const BufferInfo& Buffer<T>::getInfo()
-{
-
-	return *info;
 
 }
 
