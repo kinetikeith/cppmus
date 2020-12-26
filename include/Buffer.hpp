@@ -14,8 +14,8 @@ public:
 
 				Buffer(T);
 	
-	void			prepareBuffer(const BufferInfo&);
-	void			finishBuffer();
+	void		prepareBuffer(const BufferInfo&);
+	void		finishBuffer();
 
 	T			getDefaultValue();
 	void		setDefaultValue(T);
