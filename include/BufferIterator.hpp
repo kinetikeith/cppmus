@@ -13,11 +13,12 @@ class BufferIterator : public std::iterator<std::random_access_iterator_tag, T, 
 {
 public:
 
-					BufferIterator(BufferInfo&, FrameInfo&);
-					BufferIterator(const BufferIterator&);
-
+				BufferIterator(const BufferInfo&, const FrameInfo&);
+				BufferIterator(const BufferIterator&);
+	
 	T& operator*() const;
 	T& operator[](const size_t&) const;
+	T& get(size_t, size_t, size_t, bool) const;
 	
 	const BufferIterator& operator++();
 	const BufferIterator& operator--();
@@ -25,7 +26,7 @@ public:
 	BufferIterator& operator--(int);
 	BufferIterator& operator+=(const size_t&);
 	BufferIterator& operator-=(const size_t&);
-
+	
 	BufferIterator& operator+(const size_t&) const;
 	BufferIterator& operator-(const size_t&) const;
 	BufferIterator&	operator=(const BufferIterator&);
@@ -37,16 +38,25 @@ public:
 	bool operator<=(const BufferIterator&) const;
 	bool operator>=(const BufferIterator&) const;
 	
-	size_t getChannelIndex() const;
-	size_t getSampleIndex() const;
-	size_t getVoiceIndex() const;
+	size_t getCurrentIndex() const;
+	
+	size_t getCurrentChannelIndex() const;
+	size_t getCurrentSampleIndex() const;
+	size_t getCurrentVoiceIndex() const;
 	
 	size_t getAbsoluteSampleIndex() const;
 	double getAbsoluteTime() const;
-	
+
 private:
 
-	size_t _currentIndex;
+	size_t currentIndex;
+	
+	size_t currentChannelIndex;
+	size_t currentSampleIndex;
+	size_t currentVoiceIndex;
+	
+	const BufferInfo& bufferInfo;
+	const FrameInfo& FrameInfo;
 
 };
 
