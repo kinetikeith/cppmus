@@ -12,19 +12,20 @@ class Buffer
 {
 public:
 
-				Buffer(T);
+				Buffer(const T&);
 	
 	void		prepareBuffer(const BufferInfo&);
 	void		finishBuffer();
 
-	T			getDefaultValue();
-	void		setDefaultValue(T);
+	const T&	getDefaultValue() const;
 
-	T*			getPtr();
-
+	T*			getPtr() const;
+	
 private:
 
-	T			defaultValue;
+	friend class BufferIterator<T>;
+
+	const T		defaultValue;
 	T*			ptr;
 
 };
@@ -36,8 +37,7 @@ template<typename T>
 using BufferList = std::vector<BufferPtr<T>>;
 
 template<typename T>
-Buffer<T>::Buffer(T defValue) : defaultValue(defValue), 
-	info(nullptr)
+Buffer<T>::Buffer(const T& defValue) : defaultValue(defValue), ptr(nullptr)
 {
 
 }
@@ -46,7 +46,7 @@ template<typename T>
 void Buffer<T>::prepareBuffer(const BufferInfo& i)
 {
 
-	if(info == nullptr)
+	if(i == nullptr)
 	{
 
 		ptr = new T[i.bufferSize];
@@ -65,18 +65,10 @@ void Buffer<T>::finishBuffer()
 }
 
 template<typename T>
-inline T Buffer<T>::getDefaultValue()
+inline const T& Buffer<T>::getDefaultValue() const
 {
 
 	return defaultValue;
-
-}
-
-template<typename T>
-inline void Buffer<T>::setDefaultValue(T val)
-{
-
-	defaultValue = val;
 
 }
 
